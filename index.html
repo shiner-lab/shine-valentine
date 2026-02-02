@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine Proposal</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #ff758c, #ff7eb3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.card {
+  background: #fff;
+  padding: 28px;
+  border-radius: 22px;
+  text-align: center;
+  width: 90%;
+  max-width: 420px;
+  box-shadow: 0 18px 35px rgba(0,0,0,0.25);
+  animation: fadeIn 0.8s ease;
+}
+
+h1 {
+  color: #e63963;
+  font-size: 22px;
+}
+
+h2 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+p {
+  font-size: 15px;
+  color: #555;
+}
+
+.quote {
+  margin-top: 14px;
+  font-style: italic;
+  color: #e63963;
+}
+
+.hidden { display: none; }
+
+.buttons {
+  margin-top: 26px;
+  position: relative;
+  height: 60px;
+}
+
+button {
+  padding: 10px 26px;
+  font-size: 16px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+button:hover { transform: scale(1.08); }
+
+#yesBtn {
+  background: #e63963;
+  color: white;
+  z-index: 2;
+}
+
+#noBtn {
+  background: #e0e0e0;
+  color: #333;
+  position: fixed;
+}
+
+.secret {
+  font-size: 18px;
+  color: #e63963;
+  margin-top: 22px;
+  animation: fadeIn 1s ease;
+  font-weight: 600;
+}
+
+.flower {
+  position: fixed;
+  top: -40px;
+  font-size: 28px;
+  animation: fall 4s linear forwards;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h1>💖 PRANAVI 💖</h1>
+  <h2>Will you be my Valentine, SHINE? 🌹</h2>
+
+  <p>
+    From the moment you entered my life, everything began to feel more beautiful.
+    Your smile feels like home, and your presence makes my world complete.
+    I don’t just want today — I want every tomorrow with you.
+  </p>
+
+  <p class="quote">
+    “Some people come into your life and quietly make it better — you did that to mine.” ❤️
+  </p>
+
+  <p class="secret hidden" id="secretText">
+    💌 I love you Shine 💌
+  </p>
+
+  <div class="buttons" id="buttons">
+    <button id="yesBtn">Yes 💖</button>
+    <button id="noBtn">No 🙈</button>
+  </div>
+</div>
+
+<script>
+const noBtn = document.getElementById("noBtn");
+const yesBtn = document.getElementById("yesBtn");
+
+function moveNo() {
+  const maxX = window.innerWidth - noBtn.offsetWidth;
+  const maxY = window.innerHeight - noBtn.offsetHeight;
+
+  noBtn.style.left = Math.random() * maxX + "px";
+  noBtn.style.top = Math.random() * maxY + "px";
+}
+
+noBtn.addEventListener("mouseover", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
+
+yesBtn.addEventListener("click", () => {
+  document.getElementById("secretText").classList.remove("hidden");
+  document.getElementById("buttons").style.display = "none";
+
+  for (let i = 0; i < 35; i++) {
+    createFlower();
+  }
+});
+
+function createFlower() {
+  const flower = document.createElement("div");
+  flower.className = "flower";
+  flower.innerHTML = "🌸";
+  flower.style.left = Math.random() * 100 + "vw";
+  flower.style.animationDuration = 3 + Math.random() * 2 + "s";
+  document.body.appendChild(flower);
+
+  setTimeout(() => flower.remove(), 4000);
+}
+</script>
+
+</body>
+</html>
